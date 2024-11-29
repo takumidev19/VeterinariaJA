@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'index.html')
 
+def usuarios_list(request):
+    return render(request, 'usuarios.html')
+
 class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
