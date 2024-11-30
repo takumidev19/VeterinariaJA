@@ -1,9 +1,60 @@
 {% extends "base/base.html" %}
 
 {% block titulo %}
-    Categorias 😎😎😎
+    Categorías 😎😎😎
 {% endblock %}
 
 {% block contenido %}
-    <h1> Categorias</h1>
+<div class="container mt-4">
+    <h2>Lista de Categorías</h2>
+    <div class="d-flex justify-content-end mb-2 ">
+        <button class="btn btn-success mb-3" style="width: 175px;" onclick="">Agregar Categoría</button>
+    </div>
+    <table id="categoriasTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Productos Relacionados</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.id }}</td>
+                <td>{{ categoria.nombre }}</td>
+                <td>
+                    <ul>
+                        {% for producto in categoria.productos.all %}
+                            <li>{{ producto.nombre }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <button class="btn btn-warning" onclick="">Editar</button> 
+                    <button class="btn btn-danger" onclick="">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        $(document).ready(function() {
+            $('#categoriasTable').DataTable({
+                paging: true,
+                searching: true,
+                info: true,
+                lengthChange: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
 {% endblock %}

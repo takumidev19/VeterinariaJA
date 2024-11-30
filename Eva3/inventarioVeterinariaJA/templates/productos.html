@@ -1,9 +1,63 @@
 {% extends "base/base.html" %}
 
 {% block titulo %}
-    Productos 😎😎😎
+    Productos
 {% endblock %}
 
 {% block contenido %}
-    <h1> Productos</h1>
+<div class="container mt-4">
+    <h2>Lista de Productos</h2>
+    <div class="d-flex justify-content-end mb-2 ">
+        <button class="btn btn-success mb-3" style="width: 175px;" onclick="">Agregar Producto</button>
+    </div>
+    <table id="productosTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                {% if user.is_superuser %}
+                    <th>Creado Por</th>
+                    <th>Acciones</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.categoria.nombre }}</td>
+                {% if user.is_superuser %}
+                    <td>{{ producto.usuario.username }}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="">Editar</button> 
+                        <button class="btn btn-danger" onclick="">Eliminar</button>
+                    </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function() {
+            $('#productosTable').DataTable({
+                paging: true,
+                searching: true,
+                info: true,
+                lengthChange: true,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
 {% endblock %}

@@ -11,16 +11,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> {% block titulo %} {% endblock %} </title>
+    <title>{% block titulo %}{% endblock %}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
 </head>
 
@@ -29,9 +31,9 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Importar el menú de la barra lateral -->
+        <!-- Sidebar -->
         {% include 'base/sidebar.html' %}
-        <!-- Fin de menú de la barra lateral -->
+        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -39,27 +41,23 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Importar el menú de la barra superior -->
+                <!-- Topbar -->
                 {% include 'base/topbar.html' %}
-                <!-- Fin de menú de la barra superior -->
-                
+                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
                     {% block contenido %}
                     {% endblock %}
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Page Content -->
 
             </div>
             <!-- End of Main Content -->
 
-            <!-- Importar el pie de página -->
+            <!-- Footer -->
             {% include 'base/footer.html' %}
-            <!-- Fin de menú de la barra superior -->
+            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
@@ -73,8 +71,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -86,27 +83,36 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html"><form action="{% url 'logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Log out</button>
-                    </form></a>
+                    <a class="btn btn-primary" href="login.html">
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Log out</button>
+                        </form>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- jQuery (necesario para los demás scripts) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- Bootstrap core JavaScript -->
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-<!-- Core plugin JavaScript -->
-<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Core plugin JavaScript -->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-<!-- Custom scripts para todas las páginas -->
-<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    {% block scripts %}
+    
+    {% endblock %}
 
 </body>
 
