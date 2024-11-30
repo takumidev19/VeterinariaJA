@@ -1,9 +1,52 @@
 {% extends "base/base.html" %}
 
 {% block titulo %}
-    Usuarios 😎😎😎
+    Usuarios Registrados
 {% endblock %}
 
 {% block contenido %}
-    <h1> Usuarios</h1>
+<div class="container mt-4">
+    <h2>Lista de Usuarios</h2>
+    <table id="usuariosTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre de Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Fecha de Registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.date_joined }}</td>
+                <td>
+                    <button class="btn btn-warning">Editar</button>
+                    <button class="btn btn-danger">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#usuariosTable').DataTable({
+            paging: true,
+            searching: true,
+            info: true,
+            lengthChange: true,
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
 {% endblock %}

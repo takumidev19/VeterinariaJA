@@ -25,11 +25,7 @@
                 <td>{{ categoria.id }}</td>
                 <td>{{ categoria.nombre }}</td>
                 <td>
-                    <ul>
-                        {% for producto in categoria.productos.all %}
-                            <li>{{ producto.nombre }}</li>
-                        {% endfor %}
-                    </ul>
+                    <a href="{% url 'productosPorCategoria' categoria.id %}" class="btn btn-info">Ver Productos</a>
                 </td>
                 <td>
                     <button class="btn btn-warning" onclick="">Editar</button> 

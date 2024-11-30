@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from gestorProductos.models import Producto, Categoria
 
 # Create your views here.
@@ -12,3 +12,8 @@ def productos_list(request):
 def categorias_list(request):
     categorias = Categoria.objects.all()
     return render(request, 'categorias.html', {'categorias': categorias})
+
+def productoPorCategoria(request, categoria_id):
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    productos = categoria.productos.all()
+    return render(request, 'productosPorCategoria.html', {'categoria': categoria, 'productos': productos})

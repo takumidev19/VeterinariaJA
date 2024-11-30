@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+
+{% block titulo %}
+    Productos de la Categoría: {{ categoria.nombre }}
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2>Productos de la Categoría: {{ categoria.nombre }}</h2>
+    
+    <!-- DataTable para mostrar productos -->
+    <table id="productosTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.descripcion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#productosTable').DataTable({
+            paging: true,
+            searching: true,
+            info: true,
+            lengthChange: true,
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
+{% endblock %}
