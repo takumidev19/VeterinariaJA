@@ -24,6 +24,16 @@
         </div>
 
         <div class="form-group">
+            <input type="email"
+                   class="form-control form-control-user"
+                   id="id_email"
+                   name="{{ form.email.html_name }}"
+                   autocomplete="email"
+                   required placeholder="Correo electrónico..."
+                   value="{{ form.email.value|default_if_none:'' }}">
+        </div>
+
+        <div class="form-group">
             <input type="password"
                    class="form-control form-control-user"
                    id="id_password1"
@@ -31,6 +41,7 @@
                    autocomplete="new-password"
                    required placeholder="Contraseña">
         </div>
+        
         <div class="form-group">
             <input type="password"
                    class="form-control form-control-user"

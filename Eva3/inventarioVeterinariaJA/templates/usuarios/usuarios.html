@@ -25,8 +25,13 @@
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.date_joined }}</td>
                 <td>
-                    <button class="btn btn-warning">Editar</button>
-                    <button class="btn btn-danger">Eliminar</button>
+                    <a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-warning">Editar</a>
+                    {% if usuario != request.user %}
+                    <!-- Enlace que redirige a la vista de confirmación de eliminación -->
+                    <a href="{% url 'eliminar_usuario' usuario.id %}" class="btn btn-danger">Eliminar</a>
+                    {% else %}
+                    <span class="text-muted">No puedes eliminarte</span>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

@@ -7,8 +7,8 @@
 {% block contenido %}
 <div class="container mt-4">
     <h2>Lista de Productos</h2>
-    <div class="d-flex justify-content-end mb-2 ">
-        <button class="btn btn-success mb-3" style="width: 175px;" onclick="">Agregar Producto</button>
+    <div class="d-flex justify-content-end mb-2">
+        <a href="{% url 'crear_producto' %}" class="btn btn-success mb-3" style="width: 175px;">Agregar Producto</a>
     </div>
     <table id="productosTable" class="table table-striped">
         <thead>
@@ -35,8 +35,8 @@
                 {% if user.is_superuser %}
                     <td>{{ producto.usuario.username }}</td>
                     <td>
-                        <button class="btn btn-warning" onclick="">Editar</button> 
-                        <button class="btn btn-danger" onclick="">Eliminar</button>
+                        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-warning">Editar</a> 
+                        <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-danger">Eliminar</a>
                     </td>
                 {% endif %}
             </tr>
