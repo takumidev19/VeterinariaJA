@@ -12,7 +12,7 @@ def index(request):
 
 def usuarios_list(request):
     usuarios = User.objects.all()
-    return render(request, 'usuarios.html', {'usuarios': usuarios})
+    return render(request, 'usuarios/usuarios.html', {'usuarios': usuarios})
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
