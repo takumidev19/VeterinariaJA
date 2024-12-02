@@ -29,7 +29,7 @@
             <tr>
                 <td>{{ producto.id }}</td>
                 <td>{{ producto.nombre }}</td>
-                <td>{{ producto.precio }}</td>
+                <td>{{ producto.precio|floatformat:0 }}</td>
                 <td>{{ producto.descripcion }}</td>
                 <td>{{ producto.categoria.nombre }}</td>
                 {% if user.is_superuser %}
@@ -50,10 +50,6 @@
     <script>
         $(document).ready(function() {
             $('#productosTable').DataTable({
-                paging: true,
-                searching: true,
-                info: true,
-                lengthChange: true,
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
                 }

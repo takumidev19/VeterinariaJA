@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for usuario in usuarios %}
+            <!-- {% for usuario in usuarios %} -->
             <tr>
                 <td>{{ usuario.id }}</td>
                 <td>{{ usuario.username }}</td>
@@ -34,7 +34,7 @@
                     {% endif %}
                 </td>
             </tr>
-            {% endfor %}
+            <!-- {% endfor %} -->
         </tbody>
     </table>
 </div>
@@ -44,10 +44,6 @@
 <script>
     $(document).ready(function() {
         $('#usuariosTable').DataTable({
-            paging: true,
-            searching: true,
-            info: true,
-            lengthChange: true,
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
             }

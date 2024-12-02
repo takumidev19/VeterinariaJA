@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
-# Create your views here.
 @login_required
 def index(request):
     return render(request, 'index.html')
@@ -23,25 +22,31 @@ class SignUpView(CreateView):
 
 @login_required
 def editar_usuario(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    
-    if request.method == 'POST':
-        user.username = request.POST.get('username')
-        user.email = request.POST.get('email')
-        user.first_name = request.POST.get('first_name')
-        user.last_name = request.POST.get('last_name')
-        user.is_active = 'is_active' in request.POST
-        user.is_superuser = 'is_superuser' in request.POST
-        user.save()
-        return redirect('usuarios_list')  # Redirigir a la lista de usuarios después de editar
+    usuario = get_object_or_404(User, id=user_id)
 
-    return render(request, 'usuarios/editar_usuario.html', {'user': user})
+    if request.user != usuario and not request.user.is_superuser:
+        return HttpResponseForbidden("No tienes permisos para editar este usuario.")
+
+    if request.method == 'POST':
+        if request.user.is_superuser:
+            usuario.username = request.POST.get('username')
+            usuario.email = request.POST.get('email')
+        else:
+            usuario.username = request.POST.get('username')
+            usuario.email = request.POST.get('email')
+
+        usuario.save()
+        messages.success(request, "Usuario editado correctamente.")
+
+        return redirect('index')
+
+    return render(request, 'usuarios/editar_usuario.html', {'usuario': usuario})
 
 def eliminar_usuario(request, usuario_id):
     usuario = get_object_or_404(User, id=usuario_id)
 
     if request.method == 'POST':
         usuario.delete()
-        return redirect('usuarios_list')  # Redirige a la lista de usuarios después de eliminar
+        return redirect('usuarios_list')
 
     return render(request, 'usuarios/eliminar_usuario.html', {'usuario': usuario})   
