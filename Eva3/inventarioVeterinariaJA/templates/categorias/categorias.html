@@ -8,12 +8,9 @@
 <div class="container mt-4">
     <h2>Lista de Categorías</h2>
     
-    <!-- Botón para agregar nueva categoría -->
     <div class="d-flex justify-content-end mb-2">
         <a href="{% url 'crear_categoria' %}" class="btn btn-success mb-3" style="width: 175px;">Agregar Categoría</a>
     </div>
-    
-    <!-- Tabla que muestra las categorías -->
     <table id="categoriasTable" class="table table-striped">
         <thead>
             <tr>
@@ -32,9 +29,7 @@
                     <a href="{% url 'productosPorCategoria' categoria.id %}" class="btn btn-info">Ver Productos</a>
                 </td>
                 <td>
-                    <!-- Botón de Editar -->
                     <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-warning">Editar</a>
-                    <!-- Botón de Eliminar -->
                     <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>

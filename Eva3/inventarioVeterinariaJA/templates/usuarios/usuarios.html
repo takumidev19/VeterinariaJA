@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- {% for usuario in usuarios %} -->
+            {% for usuario in usuarios %}
             <tr>
                 <td>{{ usuario.id }}</td>
                 <td>{{ usuario.username }}</td>
@@ -34,7 +34,7 @@
                     {% endif %}
                 </td>
             </tr>
-            <!-- {% endfor %} -->
+            {% endfor %}
         </tbody>
     </table>
 </div>

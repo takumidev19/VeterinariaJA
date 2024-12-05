@@ -7,8 +7,6 @@
 {% block contenido %}
 <div class="container mt-4">
     <h2>Productos de la Categoría: {{ categoria.nombre }}</h2>
-    
-    <!-- DataTable para mostrar productos -->
     <table id="productosTable" class="table table-striped">
         <thead>
             <tr>
@@ -36,10 +34,6 @@
 <script>
     $(document).ready(function() {
         $('#productosTable').DataTable({
-            paging: true,
-            searching: true,
-            info: true,
-            lengthChange: true,
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/Spanish.json"
             }
